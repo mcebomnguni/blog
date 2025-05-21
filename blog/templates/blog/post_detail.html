@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ object.title }} - Cyber Security Tips</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #121212;
+            color: #f1f1f1;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background-color: #1e1e1e;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+        }
+        h1 {
+            color: #6cdbdb;
+        }
+        .date, .signature {
+            color: #aaa;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+        .content {
+            margin-top: 20px;
+            font-size: 1.1em;
+        }
+        a.back {
+            display: inline-block;
+            margin-top: 20px;
+            color: #6cdbdb;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ object.title }}</h1>
+        <p class="date">Published: {{ object.date|date:"F j, Y, g:i a" }}</p>
+        <p class="signature">By: {{ object.signature }}</p>
+        <div class="content">
+            {{ object.body|linebreaks }}
+        </div>
+        <a href="{% url 'post_list' %}" class="back">← Back to all tips</a>
+    </div>
+</body>
+</html>

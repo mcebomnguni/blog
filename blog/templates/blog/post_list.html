@@ -1,0 +1,162 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cyber Security Tips Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Embedded CSS for Cyber Security Blog */
+
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #121212;
+            color: #f1f1f1;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: #0e3b42;
+            color: #ffffff;
+            padding: 15px 0;
+            text-align: center;
+        }
+
+        .logo {
+            margin: 0;
+            font-size: 32px;
+            letter-spacing: 2px;
+            font-weight: bold;
+        }
+
+        nav {
+            margin-top: 10px;
+        }
+
+        nav a {
+            color: #ffffff;
+            margin-right: 20px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+            color: #6cdbdb;
+        }
+
+        .post {
+            background: #1c1c1c;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .post:hover {
+            transform: scale(1.05);
+        }
+
+        .post h2 {
+            margin-top: 0;
+            font-size: 24px;
+            color: #6cdbdb;
+        }
+
+        .post .date {
+            font-size: 0.9em;
+            color: #aaa;
+        }
+
+        .post .content {
+            margin-top: 15px;
+            font-size: 16px;
+        }
+
+        .cta-btn {
+            background: #6cdbdb;
+            color: #121212;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+            display: inline-block;
+            font-weight: bold;
+        }
+
+        .cta-btn:hover {
+            background: #3c9c9d;
+            color: #f1f1f1;
+        }
+
+        footer {
+            background: #0e3b42;
+            color: #f1f1f1;
+            text-align: center;
+            padding: 15px 0;
+            margin-top: 40px;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        .section-title {
+            color: #6cdbdb;
+            font-size: 28px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="logo">Cyber Security Tips</h1>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/blog/">Blog</a>
+                <a href="#">Best Practices</a>
+                <a href="#">Threat Alerts</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section>
+            <h2 class="section-title">Latest Security Tips</h2>
+
+            {% if object_list %}
+                {% for post in object_list %}
+                    <article class="post">
+                        <h2>{{ post.title }}</h2>
+                        <p class="date">Published: {{ post.date|date:"F j, Y, H:i" }}</p>
+                        <p class="date"><strong>Author:</strong> {{ post.signature }}</p>  <!-- Displaying author -->
+                        <div class="content">
+                            {{ post.body|slice:":300" }}  <!-- Only show first 300 characters -->
+                        </div>
+                        <a href="{% url 'post_detail' post.id %}" class="cta-btn">Read more</a>  <!-- Link to the post detail page -->
+                    </article>
+                {% endfor %}
+            {% else %}
+                <p>No blog posts available. Check back later for more tips!</p>
+            {% endif %}
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; {{ now|date:"Y" }} Cyber Security Tips. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
