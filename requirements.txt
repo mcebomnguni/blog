@@ -33,6 +33,7 @@ platformdirs==4.3.7
 psycopg2-binary==2.9.10
 Pygments==2.19.1
 PyJWT==2.9.0
+python-decouple
 python-dotenv==1.1.0
 reportlab==4.4.0
 requests==2.32.3
